@@ -1,16 +1,12 @@
 ---
-title: 修复关键问题的开发日志
-date: 2025-01-02
+title: QML笑传之ComboComboBox
+date: 2025-08-14
 category: devlog
 pinned: false
-description: 记录一次从发现问题到修复的过程。
+description: 靠近QML，人生就会变得不幸
 ---
 
-今天我：
-
-- 明确了问题现象
-- 复现并定位根因
-- 提交修复并回归验证
+调整前端布局的方式有很多，但是这个有点意外。
 
 > 现在我明白问题所在了！
 

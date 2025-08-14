@@ -96,3 +96,53 @@ body{
 .gallery-item img{ width:100%; height:220px; object-fit: cover; display:block; }
 .gallery-item .meta{ padding: 10px 12px; }
 
+/* 长签名段落在卡片中更易读 */
+.glass.card p.muted{
+  text-wrap: pretty;
+  line-height: 1.8;
+}
+
+/* Markdown/代码块样式 - 自适应毛玻璃深色/浅色背景 */
+.prose pre, pre.shiki, pre code{
+  background: rgba(0,0,0,0.35);
+}
+.prose pre, pre.shiki{
+  border: 1px solid var(--glass-border);
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  overflow: auto;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+.prose code:not(pre code){
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 2px 6px;
+}
+/* 亮色背景下的兜底（如果未来切换浅色） */
+@media (prefers-color-scheme: light){
+  .prose pre, pre.shiki, pre code{ background: rgba(255,255,255,0.85); }
+  .prose code:not(pre code){ background: rgba(255,255,255,0.75); }
+}
+
+/* 表格美化：previous-arch 自定义表格（有框、居中） */
+.arch-table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 16px;
+}
+.arch-table th,.arch-table td{
+  border: 1px solid var(--glass-border);
+  padding: 10px 12px;
+  text-align: center;
+}
+.arch-table thead th{
+  background: rgba(255,255,255,0.06);
+}
+.arch-table a{
+  color: var(--muted);
+  text-decoration: none;
+}
+.arch-table a:hover{
+  color: var(--primary);
+}

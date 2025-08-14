@@ -12,6 +12,7 @@
           <NuxtLink v-for="post in recentPosts" :key="post.path" :to="post.path" class="post-item glass">
             <h3 style="color: var(--fg);">{{ post.title }}</h3>
             <div class="muted">{{ post.date }} · {{ categoryZh(post.category) }}</div>
+            <div v-if="post.description" class="muted" style="margin-top:4px;">{{ post.description }}</div>
           </NuxtLink>
         </div>
       </div>
@@ -22,6 +23,7 @@
           <NuxtLink v-for="post in pinnedPosts" :key="post.path" :to="post.path" class="post-item glass">
             <h3 style="color: var(--fg);">{{ post.title }}</h3>
             <div class="muted">{{ post.date }} · {{ categoryZh(post.category) }}</div>
+            <div v-if="post.description" class="muted" style="margin-top:4px;">{{ post.description }}</div>
           </NuxtLink>
         </div>
       </div>

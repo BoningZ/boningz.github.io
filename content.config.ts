@@ -8,7 +8,7 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string(),
         date: z.string(),
-        category: z.enum(['tech', 'devlog', 'life', 'emotion']),
+        category: z.enum(['tech', 'devlog', 'life', 'emotion', 'algorithm']),
         pinned: z.boolean().optional(),
         description: z.string().optional()
       })
