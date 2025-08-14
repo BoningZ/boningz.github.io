@@ -10,7 +10,9 @@ export default defineContentConfig({
         date: z.string(),
         category: z.enum(['tech', 'devlog', 'life', 'emotion', 'algorithm']),
         pinned: z.boolean().optional(),
-        description: z.string().optional()
+        description: z.string().optional(),
+        cover: z.string().optional(),
+        coverAlt: z.string().optional()
       })
     }),
     gallery: defineCollection({

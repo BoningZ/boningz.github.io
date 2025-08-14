@@ -57,8 +57,35 @@ body{
 .site-header{ position: sticky; top:0; z-index:10; backdrop-filter: blur(8px); border-bottom: 1px solid var(--glass-border); background: linear-gradient(180deg, rgba(12,12,14,0.6), rgba(12,12,14,0.2)); }
 .site-header .container{ display:flex; align-items:center; justify-content: space-between; height:64px; }
 .brand{ color:var(--fg); text-decoration:none; font-weight:700; }
-.nav a{ color:var(--muted); text-decoration:none; margin-left:16px; }
+.nav{ display: flex; align-items: center; gap: 16px; }
+.nav a{ color:var(--muted); text-decoration:none; margin-left:0; }
 .nav a.router-link-active{ color:var(--primary); }
+
+/* 顶部“文章”下拉菜单 */
+.menu{ position: relative; margin-left: 0; }
+.menu-label{ color: var(--muted); cursor: pointer; user-select: none; }
+.menu:hover .menu-label{ color: var(--primary); }
+.menu-items{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  display: none;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  padding: 8px;
+  z-index: 20;
+}
+.menu:hover .menu-items{ display: block; }
+.menu-items a{
+  display: block;
+  padding: 8px 10px;
+  margin: 0;
+  border-radius: 8px;
+}
+.menu-items a:hover{ background: rgba(255,255,255,0.06); color: var(--fg); }
 
 .site-footer{ padding: 24px 0; border-top: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); backdrop-filter: blur(6px); }
 .site-footer .container{ display:flex; align-items:center; justify-content: space-between; gap:12px; flex-wrap: wrap; }
@@ -95,6 +122,31 @@ body{
 .gallery-item{ overflow:hidden; border-radius: 12px; border:1px solid var(--glass-border); background: rgba(255,255,255,0.04); }
 .gallery-item img{ width:100%; height:220px; object-fit: cover; display:block; }
 .gallery-item .meta{ padding: 10px 12px; }
+
+/* 封面淡出仅作用于图片，不影响文字 */
+.has-cover{ position: relative; overflow: hidden; }
+.has-cover::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image: var(--cover-url);
+  background-size: cover; background-position: right center; background-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0) 55%);
+          mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0) 55%);
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+/* 文章页整体浅背景封面 */
+.is-article-cover{ position: relative; overflow: hidden; }
+.is-article-cover::before{
+  content:""; position:absolute; inset:0;
+  background-image: var(--cover-url);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0) 85%);
+          mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0) 85%);
+  filter: blur(1px);
+  pointer-events: none;
+}
 
 /* 长签名段落在卡片中更易读 */
 .glass.card p.muted{

@@ -4,6 +4,7 @@ date: 2025-08-14
 category: life
 pinned: false
 description: 哈灵盖人的PATH
+cover: greater_anglia.png
 ---
 
 视线穿过肤色各异的人群，还是能看到远处的伦敦城雾蒙蒙的，可能比两百年前好一些吧。

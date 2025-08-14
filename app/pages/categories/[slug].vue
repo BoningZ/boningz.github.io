@@ -7,7 +7,7 @@
 
     <section class="glass card">
       <div class="grid">
-        <NuxtLink v-for="post in posts" :key="post.path" :to="post.path" class="post-item glass">
+        <NuxtLink v-for="post in posts" :key="post.path" :to="post.path" class="post-item glass has-cover" :style="coverVars(post.cover)">
           <h3 style="color: var(--fg);">{{ post.title }}</h3>
           <div class="muted">{{ post.date }}</div>
           <div v-if="post.description" class="muted" style="margin-top:4px;">{{ post.description }}</div>
@@ -44,5 +44,11 @@ const { data } = await useAsyncData(
   { watch: [slug] }
 )
 const posts = computed(() => data.value || [])
+
+function coverVars(cover?: string){
+  if(!cover) return {}
+  const url = cover.startsWith('/') ? cover : `/covers/${cover}`
+  return { '--cover-url': `url('${url}')` } as any
+}
 </script>
 

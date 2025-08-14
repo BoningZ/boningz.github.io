@@ -1,5 +1,5 @@
 <template>
-  <article class="container glass card" style="padding:24px;">
+  <article class="container glass card is-article-cover" :style="coverVars(doc.cover)">
     <header>
       <h1>{{ doc.title }}</h1>
       <div class="muted" style="margin:6px 0 6px;">{{ doc.date }} · {{ categoryZh(doc.category) }}</div>
@@ -28,5 +28,11 @@ const { data } = await useAsyncData(
 const doc = computed(() => data.value || {})
 
 const { categoryLabel: categoryZh } = useCategory()
+
+function coverVars(cover?: string){
+  if(!cover) return { padding: '24px' } as any
+  const url = cover.startsWith('/') ? cover : `/covers/${cover}`
+  return { '--cover-url': `url('${url}')`, padding: '24px' } as any
+}
 </script>
 

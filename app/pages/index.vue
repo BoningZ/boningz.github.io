@@ -9,7 +9,7 @@
       <div class="glass card">
         <h2>最近文章</h2>
         <div class="grid">
-          <NuxtLink v-for="post in recentPosts" :key="post.path" :to="post.path" class="post-item glass">
+          <NuxtLink v-for="post in recentPosts" :key="post.path" :to="post.path" class="post-item glass has-cover" :style="coverVars(post.cover)">
             <h3 style="color: var(--fg);">{{ post.title }}</h3>
             <div class="muted">{{ post.date }} · {{ categoryZh(post.category) }}</div>
             <div v-if="post.description" class="muted" style="margin-top:4px;">{{ post.description }}</div>
@@ -20,7 +20,7 @@
       <div class="glass card">
         <h2>置顶文章</h2>
         <div class="grid">
-          <NuxtLink v-for="post in pinnedPosts" :key="post.path" :to="post.path" class="post-item glass">
+          <NuxtLink v-for="post in pinnedPosts" :key="post.path" :to="post.path" class="post-item glass has-cover" :style="coverVars(post.cover)">
             <h3 style="color: var(--fg);">{{ post.title }}</h3>
             <div class="muted">{{ post.date }} · {{ categoryZh(post.category) }}</div>
             <div v-if="post.description" class="muted" style="margin-top:4px;">{{ post.description }}</div>
@@ -79,5 +79,11 @@ const photos = computed(() => Array.isArray(gallery.value) ? gallery.value : [])
 const topPhotos = computed(() => photos.value.slice(0, 6))
 
 const { categoryLabel: categoryZh } = useCategory()
+
+function coverVars(cover?: string){
+  if(!cover) return {}
+  const url = cover.startsWith('/') ? cover : `/covers/${cover}`
+  return { '--cover-url': `url('${url}')` } as any
+}
 </script>
 
