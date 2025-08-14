@@ -1,0 +1,7 @@
+navigation:
+  fields:
+    - title
+    - date
+    - category
+    - pinned
+
