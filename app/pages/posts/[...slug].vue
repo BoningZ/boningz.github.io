@@ -10,16 +10,21 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ key: (route) => route.fullPath })
 import { useCategory } from '../../../composables/useCategory'
 const route = useRoute()
 const currentPath = computed(() => String(route.path))
-const { data } = await useAsyncData('post-detail', async () => {
-  const rows = await queryCollection('posts')
-    .where('path', '=', currentPath.value)
-    .limit(1)
-    .all()
-  return JSON.parse(JSON.stringify(rows?.[0] || null))
-})
+const { data } = await useAsyncData(
+  () => `post-detail-${currentPath.value}`,
+  async () => {
+    const rows = await queryCollection('posts')
+      .where('path', '=', currentPath.value)
+      .limit(1)
+      .all()
+    return JSON.parse(JSON.stringify(rows?.[0] || null))
+  },
+  { watch: [currentPath] }
+)
 const doc = computed(() => data.value || {})
 
 const { categoryLabel: categoryZh } = useCategory()
