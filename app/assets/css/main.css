@@ -24,24 +24,22 @@ body{
 
 /* 生成45度斜着的重复文本，并用模糊不影响阅读 */
 .app-root::before{
-  content: "现在我明白了问题所在。 现在我已经修复了实现。 我发现问题了！ 你说得对！ 现在我完全明白问题所在了！ 现在我明白问题了！ 现在我已经修复了关键问题！";
+  /* 用平铺的SVG文字图案作为背景，整体旋转45度 */
+  content: "";
   position: fixed;
-  inset: -50vh -50vw;
+  inset: -20vh -20vw;
   z-index: -2;
-  color: rgba(255,255,255,0.06);
-  pointer-events:none;
-  white-space: pre;
-  line-height: 2.2;
+  pointer-events: none;
+  background-image: url('/patterns/text-pattern.svg');
+  background-repeat: repeat;
+  background-size: 600px 300px;
   transform: rotate(-45deg);
-  display: grid;
-  place-items: center;
-  font-weight: 600;
-  letter-spacing: 1px;
-  filter: blur(6px);
+  filter: blur(2px) contrast(1.1) saturate(1.05);
+  opacity: 1;
 }
 
 .app-root::after{
-  /* 叠加一层深色渐变并再次模糊，确保不影响正文可读性 */
+  /* 叠加深色层与模糊，保证不影响阅读 */
   content: "";
   position: fixed;
   inset: 0;
@@ -49,7 +47,7 @@ body{
   background: radial-gradient(1200px 800px at 10% 10%, rgba(255,255,255,0.06), transparent),
               radial-gradient(1000px 600px at 90% 20%, rgba(255,255,255,0.04), transparent),
               linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0.25));
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
 }
 
 .app-main{ padding: 24px; }

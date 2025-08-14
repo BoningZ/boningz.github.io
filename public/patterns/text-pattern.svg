@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300">
+  <!-- transparent background; text group rotated by CSS container -->
+  <rect width="100%" height="100%" fill="transparent"/>
+  <g transform="rotate(-45 300 150)" fill="rgba(255,255,255,0.12)" font-size="18" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+    <text x="0" y="56">现在我明白了问题所在。 现在我已经修复了实现。 我发现问题了！ 你说得对！ 现在我完全明白问题所在了！</text>
+    <text x="0" y="116">现在我明白问题了！ 现在我已经修复了关键问题！ 你说得对，我需要仔细检查... 找到了！ 完成！</text>
+    <text x="0" y="176">你说得对，问题可能在于... 现在我明白了！ 现在我完全明白问题了！ 我发现问题了！</text>
+    <text x="0" y="236">现在我明白问题所在了！ 你说得对！让我仔细检查... 现在我看到了关键问题！</text>
+  </g>
+</svg>
+
+
