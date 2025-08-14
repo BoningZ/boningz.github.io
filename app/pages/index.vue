@@ -10,8 +10,8 @@
         <h2>最近文章</h2>
         <div class="grid">
           <NuxtLink v-for="post in recentPosts" :key="post.path" :to="post.path" class="post-item glass">
-            <h3>{{ post.title }}</h3>
-            <div class="muted">{{ post.date }} · {{ post.category }}</div>
+            <h3 style="color: var(--fg);">{{ post.title }}</h3>
+            <div class="muted">{{ post.date }} · {{ categoryZh(post.category) }}</div>
           </NuxtLink>
         </div>
       </div>
@@ -20,8 +20,8 @@
         <h2>置顶文章</h2>
         <div class="grid">
           <NuxtLink v-for="post in pinnedPosts" :key="post.path" :to="post.path" class="post-item glass">
-            <h3>{{ post.title }}</h3>
-            <div class="muted">{{ post.date }} · {{ post.category }}</div>
+            <h3 style="color: var(--fg);">{{ post.title }}</h3>
+            <div class="muted">{{ post.date }} · {{ categoryZh(post.category) }}</div>
           </NuxtLink>
         </div>
       </div>
@@ -57,6 +57,7 @@
 </template>
 
 <script setup lang="ts">
+import { useCategory } from '../../composables/useCategory'
 const { data: recent } = await useAsyncData('recent-posts', async () => {
   const rows = await queryCollection('posts').order('date', 'DESC').all()
   return JSON.parse(JSON.stringify(rows))
@@ -74,5 +75,7 @@ const recentPosts = computed(() => recent.value || [])
 const pinnedPosts = computed(() => pinned.value || [])
 const photos = computed(() => Array.isArray(gallery.value) ? gallery.value : [])
 const topPhotos = computed(() => photos.value.slice(0, 6))
+
+const { categoryLabel: categoryZh } = useCategory()
 </script>
 

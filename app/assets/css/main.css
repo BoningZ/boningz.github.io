@@ -34,7 +34,8 @@ body{
   background-repeat: repeat;
   background-size: 600px 300px;
   transform: rotate(-45deg);
-  filter: blur(2px) contrast(1.1) saturate(1.05);
+  /* 去除前景模糊，仅保留轻微对比/饱和增强 */
+  filter: contrast(1.1) saturate(1.05);
   opacity: 1;
 }
 
@@ -46,8 +47,8 @@ body{
   z-index: -1;
   background: radial-gradient(1200px 800px at 10% 10%, rgba(255,255,255,0.06), transparent),
               radial-gradient(1000px 600px at 90% 20%, rgba(255,255,255,0.04), transparent),
-              linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0.25));
-  backdrop-filter: blur(6px);
+              linear-gradient(0deg, rgba(0,0,0,0.18), rgba(0,0,0,0.18));
+  backdrop-filter: blur(1px);
 }
 
 .app-main{ padding: 24px; }
@@ -75,7 +76,9 @@ body{
 @media (max-width: 900px){ .grid.cols-3{ grid-template-columns: 1fr; } }
 
 .post-item{ padding:16px; }
-.post-item h3{ margin:8px 0 6px; }
+.post-item{ display:block; color: var(--fg); text-decoration: none; border-radius: 12px; }
+.post-item:hover h3{ transform: scale(1.04); }
+.post-item h3{ margin:8px 0 6px; transition: transform 160ms ease; transform-origin: left center; }
 .muted{ color: var(--muted); font-size: 14px; }
 
 .hero{
