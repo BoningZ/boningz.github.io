@@ -3,6 +3,7 @@ title: QML笑传之ComboComboBox
 date: 2025-08-14
 category: devlog
 pinned: false
+cover: ccb.png
 description: 靠近QML，人生就会变得不幸
 ---
 

@@ -4,6 +4,7 @@ date: 2025-01-05
 category: algorithm
 pinned: false
 description: 只有我一人，写的题解，凋零在oj里面
+cover: noi.png
 ---
 
 
