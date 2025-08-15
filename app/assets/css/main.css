@@ -177,6 +177,25 @@ body{
   .prose code:not(pre code){ background: rgba(255,255,255,0.75); }
 }
 
+/* Markdown 引用（blockquote）更明显的展示 */
+.prose blockquote, blockquote{
+  position: relative;
+  margin: 14px 0;
+  padding: 10px 14px 10px 16px;
+  border-left: 4px solid var(--primary);
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  color: var(--fg);
+}
+.prose blockquote p, blockquote p{ margin: 6px 0; color: var(--fg); }
+.prose blockquote::before, blockquote::before{
+  content: "\201C"; /* 左上引号 */
+  position: absolute; left: 10px; top: -8px;
+  font-size: 28px; line-height: 1; color: rgba(255,255,255,0.25);
+}
+.prose blockquote > :first-child{ margin-top: 0; }
+.prose blockquote > :last-child{ margin-bottom: 0; }
+
 /* 表格美化：previous-arch 自定义表格（有框、居中） */
 .arch-table{
   width: 100%;
