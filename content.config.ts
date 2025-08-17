@@ -23,7 +23,15 @@ export default defineContentConfig({
         date: z.string(),
         location: z.string(),
         caption: z.string().optional(),
-        image: z.string()
+        image: z.string(),
+        md: z.string().optional()
+      })
+    }),
+    gallery_md: defineCollection({
+      type: 'page',
+      source: 'gallery-md/**/*.md',
+      schema: z.object({
+        slug: z.string().optional()
       })
     })
   }

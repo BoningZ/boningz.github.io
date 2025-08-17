@@ -119,9 +119,13 @@ body{
 .gallery-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
 @media (max-width: 900px){ .gallery-grid{ grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px){ .gallery-grid{ grid-template-columns: 1fr; } }
-.gallery-item{ overflow:hidden; border-radius: 12px; border:1px solid var(--glass-border); background: rgba(255,255,255,0.04); }
+.gallery-item{ display:block; overflow:hidden; border-radius: 12px; border:1px solid var(--glass-border); background: rgba(255,255,255,0.04); }
 .gallery-item img{ width:100%; height:220px; object-fit: cover; display:block; }
 .gallery-item .meta{ padding: 10px 12px; }
+/* 摄影卡片文字恢复为主题色且去掉下划线/蓝色 */
+.gallery-grid .gallery-item{ color: var(--fg); text-decoration: none; }
+.gallery-grid .gallery-item:visited{ color: var(--fg); }
+.gallery-grid .gallery-item .muted{ color: var(--muted); }
 
 /* 封面淡出仅作用于图片，不影响文字 */
 .has-cover{ position: relative; overflow: hidden; }
@@ -134,7 +138,9 @@ body{
           mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0) 55%);
   filter: blur(1px);
   pointer-events: none;
+  z-index: 0;
 }
+.has-cover > *{ position: relative; z-index: 1; }
 
 /* 文章页整体浅背景封面 */
 .is-article-cover{ position: relative; overflow: hidden; }
@@ -146,7 +152,9 @@ body{
           mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0) 85%);
   filter: blur(1px);
   pointer-events: none;
+  z-index: 0;
 }
+.is-article-cover > *{ position: relative; z-index: 1; }
 
 /* 长签名段落在卡片中更易读 */
 .glass.card p.muted{
@@ -210,10 +218,6 @@ body{
 .arch-table thead th{
   background: rgba(255,255,255,0.06);
 }
-.arch-table a{
-  color: var(--muted);
-  text-decoration: none;
-}
-.arch-table a:hover{
-  color: var(--primary);
-}
+/* 链接外观还原为普通文本（用于深色背景可读性）*/
+.arch-table a{ color: inherit; text-decoration: none; }
+.arch-table a:hover{ color: inherit; text-decoration: none; }

@@ -1,6 +1,6 @@
 ---
 title: 往年题解
-date: 2025-01-05
+date: 2025-08-15
 category: algorithm
 pinned: false
 description: 只有我一人，写的题解，凋零在oj里面
