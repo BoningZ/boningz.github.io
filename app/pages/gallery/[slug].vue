@@ -31,7 +31,6 @@ const { data } = await useAsyncData(
   { watch: [slug] }
 )
 const doc = computed(() => data.value as any)
-const titleText = computed(() => doc.value?.caption || doc.value?.location || doc.value?.slug || '摄影作品')
 const { data: mdData } = await useAsyncData(
   () => `gallery-md-${slug.value}`,
   async () => {
@@ -44,6 +43,8 @@ const { data: mdData } = await useAsyncData(
   { watch: [slug] }
 )
 const mdDoc = computed(() => mdData.value as any)
+
+const titleText = computed(() => (mdDoc.value as any)?.title || doc.value?.caption || doc.value?.location || doc.value?.slug || '摄影作品')
 
 function coverVars(src?: string){
   if(!src) return {}

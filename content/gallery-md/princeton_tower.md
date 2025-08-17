@@ -1,9 +1,11 @@
 ---
-title: 普林斯顿·塔楼
+title: 家庭游记
 slug: princeton_tower
 ---
 
-石墙背后是时间，校训依旧温柔：Dei sub numine viget。
+友人的两位舍友和我一起来玩。生活大爆炸中莱纳德的母校。
+
+这才是大学。
 
 
 
