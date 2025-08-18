@@ -4,6 +4,7 @@ date: 2025-08-17
 category: emotion
 pinned: false
 description: 我看不见。
+cover: telegram.png
 ---
 
 >如果情绪有颜色，今晚大概是柔和的蓝色。 —— GPT 5
