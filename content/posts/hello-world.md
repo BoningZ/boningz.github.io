@@ -1,6 +1,6 @@
 ---
 title: 你好，世界
-date: 2025-08-17
+date: 2025-08-13
 category: tech
 pinned: true
 description: 首篇文章，用于验证博客路由与渲染。
