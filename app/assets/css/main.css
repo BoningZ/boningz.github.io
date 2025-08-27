@@ -204,6 +204,11 @@ body{
 .prose blockquote > :first-child{ margin-top: 0; }
 .prose blockquote > :last-child{ margin-bottom: 0; }
 
+/* GFM 删除线与 KaTeX 对齐优化 */
+.prose del, del{ text-decoration: line-through; }
+.prose :where(del, s){ text-decoration-thickness: 2px; text-decoration-color: rgba(255,255,255,0.55); }
+.prose :where(.katex, .katex-html){ vertical-align: baseline; }
+
 /* 表格美化：previous-arch 自定义表格（有框、居中） */
 .arch-table{
   width: 100%;

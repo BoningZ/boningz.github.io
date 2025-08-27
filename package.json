@@ -17,6 +17,10 @@
   "devDependencies": {
     "@nuxt/content": "^3.6.3",
     "better-sqlite3": "^12.2.0",
+    "katex": "^0.16.22",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
     "shiki": "^3.9.2"
   }
 }

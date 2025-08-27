@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -11,6 +12,13 @@ export default defineNuxtConfig({
   content: {
     build: {
       markdown: {
+        remarkPlugins: {
+          'remark-math': {},
+          'remark-gfm': { singleTilde: false }
+        } as any,
+        rehypePlugins: {
+          'rehype-katex': {}
+        } as any,
         highlight: {
           theme: {
             default: 'one-dark-pro',
@@ -28,6 +36,9 @@ export default defineNuxtConfig({
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: '基于 Nuxt 与 Markdown 的个人博客' }
+      ],
+      link: [
+        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css' }
       ]
     }
   }
