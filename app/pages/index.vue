@@ -73,7 +73,7 @@ const { data: gallery } = await useAsyncData('gallery', async () => {
   return JSON.parse(JSON.stringify(rows))
 })
 
-const recentPosts = computed(() => recent.value || [])
+const recentPosts = computed(() => (recent.value || []).slice(0, 6))
 const pinnedPosts = computed(() => pinned.value || [])
 const photos = computed(() => Array.isArray(gallery.value) ? gallery.value : [])
 const topPhotos = computed(() => photos.value.slice(0, 6))
