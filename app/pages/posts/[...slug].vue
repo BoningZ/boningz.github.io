@@ -7,8 +7,11 @@
     </header>
     <ContentRenderer :value="doc" />
   </article>
-  <div v-else class="container">
+  <div v-else-if="loading" class="container">
     <p>文章加载中...</p>
+  </div>
+  <div v-else class="container">
+    <p>文章未找到</p>
   </div>
 </template>
 
@@ -19,19 +22,39 @@ const route = useRoute()
 const slug = route.params.slug as string[]
 const path = slug.join('/')
 
-const { data } = await useAsyncData(
-  `post-detail-${path}`,
-  async () => {
+// 使用客户端数据获取，避免预渲染问题
+const doc = ref(null)
+const loading = ref(true)
+
+const { categoryLabel: categoryZh } = useCategory()
+
+// 在客户端获取数据
+onMounted(async () => {
+  try {
+    console.log('Looking for path:', `/posts/${path}`)
+    const allPosts = await queryCollection('posts').all()
+    console.log('All posts:', allPosts.map(p => ({ title: p.title, path: p.path })))
+
     const rows = await queryCollection('posts')
       .where('path', '=', `/posts/${path}`)
       .limit(1)
       .all()
-    return JSON.parse(JSON.stringify(rows?.[0] || null))
-  }
-)
-const doc = computed(() => data.value || {})
 
-const { categoryLabel: categoryZh } = useCategory()
+    console.log('Query result:', rows)
+    doc.value = rows?.[0] || null
+
+    if (!doc.value) {
+      // 如果没有找到，尝试查找所有可能的路径
+      console.log('Post not found, checking all paths...')
+      const found = allPosts.find(p => p.path === `/posts/${path}`)
+      console.log('Found by manual search:', found)
+    }
+  } catch (error) {
+    console.error('Failed to load post:', error)
+  } finally {
+    loading.value = false
+  }
+})
 
 function coverVars(cover?: string){
   if(!cover) return { padding: '24px' } as any
