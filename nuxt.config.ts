@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     '@/assets/css/main.css'
   ],
   content: {
+    experimental: {
+      stripQueryParameters: true
+    },
     build: {
       markdown: {
         remarkPlugins: {
@@ -28,6 +31,9 @@ export default defineNuxtConfig({
           langs: ['qml', 'ini']
         }
       }
+    },
+    renderer: {
+      anchorLinks: false
     }
   },
   app: {
