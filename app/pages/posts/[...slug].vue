@@ -1,5 +1,5 @@
 <template>
-  <article class="container glass card is-article-cover" :style="coverVars(doc.cover)">
+  <article v-if="doc && doc.title" class="container glass card is-article-cover" :style="coverVars(doc.cover)">
     <header>
       <h1>{{ doc.title }}</h1>
       <div class="muted" style="margin:6px 0 6px;">{{ doc.date }} · {{ categoryZh(doc.category) }}</div>
@@ -7,23 +7,27 @@
     </header>
     <ContentRenderer :value="doc" />
   </article>
+  <div v-else class="container">
+    <p>文章加载中...</p>
+  </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({ key: (route) => route.fullPath })
 import { useCategory } from '../../../composables/useCategory'
 const route = useRoute()
-const currentPath = computed(() => String(route.path))
+const slug = route.params.slug as string[]
+const path = slug.join('/')
+
 const { data } = await useAsyncData(
-  () => `post-detail-${currentPath.value}`,
+  `post-detail-${path}`,
   async () => {
     const rows = await queryCollection('posts')
-      .where('path', '=', currentPath.value)
+      .where('path', '=', `/posts/${path}`)
       .limit(1)
       .all()
     return JSON.parse(JSON.stringify(rows?.[0] || null))
-  },
-  { watch: [currentPath] }
+  }
 )
 const doc = computed(() => data.value || {})
 
