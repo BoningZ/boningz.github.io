@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { readdirSync } from 'fs'
+import { resolve } from 'path'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -9,6 +11,18 @@ export default defineNuxtConfig({
   css: [
     '@/assets/css/main.css'
   ],
+  nitro: {
+    prerender: {
+      routes: [
+        ...readdirSync(resolve('./content/posts'))
+          .filter(file => file.endsWith('.md'))
+          .map(file => `/posts/${file.replace('.md', '')}`),
+        ...readdirSync(resolve('./content/gallery'))
+          .filter(file => file.endsWith('.md'))
+          .map(file => `/gallery/${file.replace('.md', '')}`)
+      ]
+    }
+  },
   content: {
     experimental: {
       stripQueryParameters: true
