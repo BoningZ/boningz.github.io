@@ -25,7 +25,7 @@ export default defineNuxtConfig({
             dark: 'one-dark-pro',
             light: 'min-light'
           },
-          langs: ['qml']
+          langs: ['qml', 'ini']
         }
       }
     }
