@@ -44,6 +44,7 @@ export default defineNuxtConfig({
         { name: 'description', content: '基于 Nuxt 与 Markdown 的个人博客' }
       ],
       link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css' }
       ]
     }
