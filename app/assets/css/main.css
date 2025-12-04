@@ -209,6 +209,63 @@ body{
 .prose :where(del, s){ text-decoration-thickness: 2px; text-decoration-color: rgba(255,255,255,0.55); }
 .prose :where(.katex, .katex-html){ vertical-align: baseline; }
 
+/* Markdown 图片样式 - 响应式支持 */
+.prose figure, article figure {
+  margin: 16px auto;
+  padding: 0;
+  text-align: center;
+}
+.prose figure img, article figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+.prose figcaption, article figcaption {
+  margin-top: 8px;
+  padding: 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+}
+.prose img:not(figure img), article img:not(figure img) {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 16px auto;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 900px) {
+  .prose figure, article figure {
+    margin: 12px auto;
+  }
+  .prose img:not(figure img), article img:not(figure img) {
+    max-width: 100%;
+    margin: 12px auto;
+  }
+}
+@media (max-width: 600px) {
+  .prose figure, article figure {
+    margin: 10px auto;
+  }
+  .prose figure img, article figure img {
+    border-radius: 8px;
+  }
+  .prose img:not(figure img), article img:not(figure img) {
+    margin: 10px auto;
+    border-radius: 8px;
+  }
+  .prose figcaption, article figcaption {
+    font-size: 12px;
+  }
+}
+
 /* 表格美化：previous-arch 自定义表格（有框、居中） */
 .arch-table{
   width: 100%;
